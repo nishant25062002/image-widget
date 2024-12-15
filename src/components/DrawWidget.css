@@ -1,0 +1,55 @@
+.drawWidget {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  overflow-x: hidden;
+}
+
+.brushTools {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.canvaImage {
+  position: relative;
+  margin-top: 30px;
+  background: #f7d7d71a;
+}
+
+.canvaImage > img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+.exportSection{
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+  max-width: 80%;
+}
+
+.exportImages {
+  display: flex;
+  gap: 30px;
+}
+
+.exportImage {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+}
+
+.exportImage > img {
+  width: 100%;
+}
+
+.exportBtns{
+    display: flex;
+    gap: 30px;
+    align-items: center;
+}

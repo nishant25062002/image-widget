@@ -1,5 +1,6 @@
 import { useState, useRef } from "react";
 import CanvasDraw from "react-canvas-draw";
+import { TiArrowForward, TiArrowBack } from "react-icons/ti";
 import "./DrawWidget.css";
 
 const DrawWidget = () => {
@@ -88,8 +89,6 @@ const DrawWidget = () => {
     setMaskImage(null);
   };
 
-  console.log("imageSize", imageSize.height);
-
   return (
     <div className="drawWidget">
       <h1>Image Inpainting Widget</h1>
@@ -128,9 +127,9 @@ const DrawWidget = () => {
       )}
 
       {image && (
-        <>
+        <div className="toolsAndButtons">
           <div className="brushTools">
-            <div>
+            <div className="brushTool">
               <label>Brush Size: </label>
               <input
                 type="range"
@@ -139,9 +138,9 @@ const DrawWidget = () => {
                 value={brushRadius}
                 onChange={(e) => setBrushRadius(Number(e.target.value))}
               />
-              <span> {brushRadius}px</span>
+              <span>{brushRadius}px</span>
             </div>
-            <div>
+            <div className="brushTool">
               <label>Colour:</label>
               <input
                 type="color"
@@ -149,20 +148,25 @@ const DrawWidget = () => {
                 onChange={(event) => {
                   setCanvas(event.target.value);
                 }}
+                className="colorPicker"
               />
             </div>
           </div>
 
-          <button onClick={handleUndo}>UNDO</button>
-          <button onClick={handleRedo}>REDO</button>
-        </>
+          <div className="undoRedoDiv">
+            <button>
+              <TiArrowBack onClick={handleUndo} className="undoRedo" />
+            </button>
+            <button>
+              <TiArrowForward onClick={handleRedo} className="undoRedo" />
+            </button>
+          </div>
+        </div>
       )}
 
       {image && (
-        <div style={{ marginTop: "20px" }}>
-          <button onClick={exportMask} style={{ marginRight: "10px" }}>
-            Export Mask
-          </button>
+        <div className="otherBtns">
+          <button onClick={exportMask}>Export Mask</button>
           <button onClick={clearCanvas}>Clear Canvas</button>
         </div>
       )}
@@ -180,9 +184,7 @@ const DrawWidget = () => {
             </div>
           </div>
           <div className="exportBtns">
-            <a
-              href={maskImage}
-              download="mask_image.png">
+            <a href={maskImage} download="mask_image.png">
               Download Mask
             </a>
             <button onClick={handleCancel}>Cancel Export</button>

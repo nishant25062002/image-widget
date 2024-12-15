@@ -65,5 +65,57 @@
   font-weight: 500;
   background-color: #28a745;
   cursor: pointer;
-  color: white;
+  color: white !important;
+}
+
+.toolsAndButtons {
+  display: flex;
+  padding: 20px;
+}
+
+.brushTool {
+  display: flex;
+  align-items: center;
+}
+
+.brushTool > label {
+  font-weight: 500;
+  font-size: 14px;
+  padding-right: 12px;
+}
+
+.brushTool > span {
+  font-weight: 500;
+  font-size: 13px;
+}
+
+.colorPicker {
+  height: 30px;
+  width: 30px;
+  margin-right: 12px;
+  cursor: pointer;
+}
+
+.undoRedoDiv {
+  display: flex;
+  gap: 10px;
+  padding-left: 20px;
+}
+
+.undoRedo {
+  cursor: pointer;
+  font-size: 30px;
+}
+
+.otherBtns {
+  margin-bottom: 20px;
+  display: flex;
+  gap: 20px;
+}
+
+.undoRedoDiv > button {
+  background-color: transparent !important;
+  border: none !important;
+  outline: none !important;
+  width: 40px !important;
 }

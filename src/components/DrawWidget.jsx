@@ -43,7 +43,12 @@ const DrawWidget = () => {
         const img = new Image();
         img.src = e.target.result;
         img.onload = () => {
-          setImageSize({ width: img.naturalWidth, height: img.naturalHeight });
+          setImageSize({
+            width: img.naturalWidth,
+            height: img.naturalHeight,
+          });
+
+          console.log(img.naturalWidth, 1000);
           setTimeout(() => {
             setImage(e.target.result);
           }, 10);
@@ -83,6 +88,8 @@ const DrawWidget = () => {
     setMaskImage(null);
   };
 
+  console.log("imageSize", imageSize.height);
+
   return (
     <div className="drawWidget">
       <h1>Image Inpainting Widget</h1>
@@ -97,11 +104,18 @@ const DrawWidget = () => {
 
       {image && (
         <div className="canvaImage">
-          <img src={image} alt="Uploaded" />
+          <img
+            src={image}
+            alt="Uploaded"
+            style={{
+              width: `${Math.min(imageSize.width, 800)}px`,
+              height: `${Math.min(imageSize.height, 1000)}px`,
+            }}
+          />
           <CanvasDraw
             ref={canvasRef}
-            canvasWidth={imageSize?.width}
-            canvasHeight={imageSize?.height}
+            canvasWidth={Math.min(imageSize.width, 800)}
+            canvasHeight={Math.min(imageSize.height, 1000)}
             brushColor={canvas}
             backgroundColor="transparent"
             brushRadius={brushRadius}
@@ -168,16 +182,7 @@ const DrawWidget = () => {
           <div className="exportBtns">
             <a
               href={maskImage}
-              download="mask_image.png"
-              style={{
-                display: "inline-block",
-                padding: "10px 20px",
-                backgroundColor: "#28A745",
-                color: "white",
-                textDecoration: "none",
-                borderRadius: "5px",
-              }}
-            >
+              download="mask_image.png">
               Download Mask
             </a>
             <button onClick={handleCancel}>Cancel Export</button>
